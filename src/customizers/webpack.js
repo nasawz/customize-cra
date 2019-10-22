@@ -121,15 +121,13 @@ export const addLessLoader = (loaderOptions = {}) => config => {
 
   const getLessLoader = cssOptions => {
     return [
-      mode === "dev"
-        ? require.resolve("style-loader")
-        : {
-            loader: require("mini-css-extract-plugin").loader,
-            options: Object.assign(
-              {},
-              shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
-            )
-          },
+      {
+        loader: require("mini-css-extract-plugin").loader,
+        options: Object.assign(
+          {},
+          shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
+        )
+      },
       {
         loader: require.resolve("css-loader"),
         options: cssOptions
